@@ -1,5 +1,9 @@
 # Exapi
 
+Desafio Ignite - Consumindo APIs com Elixir e Phoenix
+
+## Phoenix Framework
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
