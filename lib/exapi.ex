@@ -1,0 +1,10 @@
+defmodule Exapi do
+  @moduledoc """
+  Exapi keeps the contexts that define your domain
+  and business logic.
+
+  Contexts are also responsible for managing your data, regardless
+  if it comes from the database, an external API or others.
+  """
+  defdelegate github_data(params), to: Exapi.Github, as: :call
+end
