@@ -18,6 +18,10 @@ config :exapi, ExapiWeb.Auth.Guardian,
   issuer: "exapi",
   secret_key: "F8n16Y/K3R6yqwb/O9JK9+tlapNKAi11P9fGmc7JufWwJRxe9NM7cEhcEmQqMWgD"
 
+config :exapi, ExapiWeb.Auth.Pipeline,
+  module: ExapiWeb.Auth.Guardian,
+  error_handler: ExapiWeb.Auth.ErrorHandler
+
 # Configures the endpoint
 config :exapi, ExapiWeb.Endpoint,
   url: [host: "localhost"],

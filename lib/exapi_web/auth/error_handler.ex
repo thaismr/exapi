@@ -4,7 +4,8 @@ defmodule ExapiWeb.Auth.ErrorHandler do
 
   @behaviour ErrorHandler
 
-  def auth_error(_conn, {error, _reason}, _opts) do
+  def auth_error(conn, {error, _reason}, _opts) do
     body = Jason.encode!(%{message: to_string(error)})
+    Conn.send_resp(conn, 401, body)
   end
 end

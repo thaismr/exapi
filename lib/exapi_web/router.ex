@@ -8,11 +8,21 @@ defmodule ExapiWeb.Router do
     plug UUIDChecker
   end
 
+  pipeline :auth do
+    plug ExapiWeb.Auth.Pipeline
+  end
+
+  scope "/", ExapiWeb do
+    pipe_through [:api, :auth]
+
+    get "/:user", DataController, :show
+  end
+
   scope "/", ExapiWeb do
     pipe_through :api
 
     post "/users/", UsersController, :create
-    get "/:user", DataController, :show
+    post "/users/signin", UsersController, :sign_in
     get "/", DataController, :index
   end
 
