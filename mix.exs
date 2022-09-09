@@ -50,13 +50,20 @@ defmodule Exapi.MixProject do
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
-      {:jason, "~> 1.2"},
+      {:jason, "~> 1.3"},
       {:plug_cowboy, "~> 2.5"},
-      {:tesla, "~> 1.4"},
+      {:guardian, "~> 2.0"},
       {:hackney, "~> 1.17"},
+      {:pbkdf2_elixir, "~> 1.4"},
+      {:tesla, "~> 1.4"},
+
+      # DEV TEST
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
+
+      # TEST
       {:bypass, "~> 2.1", only: :test},
-      {:excoveralls, "~> 0.10", only: :test},
-      {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
+      {:ex_machina, "~> 2.7.0", only: :test},
+      {:excoveralls, "~> 0.10", only: :test}
     ]
   end
 
