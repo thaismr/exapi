@@ -22,7 +22,7 @@ defmodule ExapiWeb.Router do
     pipe_through :api
 
     post "/users/", UsersController, :create
-    post "/users/signin", UsersController, :sign_in
+    post "/users/login", UsersController, :sign_in
     get "/", DataController, :index
   end
 

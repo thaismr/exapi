@@ -3,10 +3,12 @@ defmodule ExapiWeb.UsersView do
 
   alias Exapi.User
 
-  def render("create.json", %{token: token, user: %User{} = user}) do
+  def render("create.json", %{token: token, user: %User{id: id}}) do
     %{
       token: token,
-      user: user
+      user: %User{
+        id: id
+      }
     }
   end
 
@@ -14,7 +16,11 @@ defmodule ExapiWeb.UsersView do
     %{token: token}
   end
 
-  def render("user.json", %{user: %User{} = user}) do
-    %{user: user}
+  def render("user.json", %{user: %User{id: id}}) do
+    %{
+      user: %User{
+        id: id
+      }
+    }
   end
 end
