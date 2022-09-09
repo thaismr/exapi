@@ -10,6 +10,14 @@ import Config
 config :exapi,
   ecto_repos: [Exapi.Repo]
 
+config :exapi, Exapi.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
+
+config :exapi, ExapiWeb.Auth.Guardian,
+  issuer: "exapi",
+  secret_key: "F8n16Y/K3R6yqwb/O9JK9+tlapNKAi11P9fGmc7JufWwJRxe9NM7cEhcEmQqMWgD"
+
 # Configures the endpoint
 config :exapi, ExapiWeb.Endpoint,
   url: [host: "localhost"],

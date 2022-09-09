@@ -1,13 +1,17 @@
 defmodule ExapiWeb.Router do
   use ExapiWeb, :router
 
+  alias ExapiWeb.Plugs.UUIDChecker
+
   pipeline :api do
     plug :accepts, ["json"]
+    plug UUIDChecker
   end
 
   scope "/", ExapiWeb do
     pipe_through :api
 
+    post "/users/", UsersController, :create
     get "/:user", DataController, :show
     get "/", DataController, :index
   end
