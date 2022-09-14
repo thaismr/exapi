@@ -1,5 +1,6 @@
 defmodule ExapiWeb.Auth.Guardian do
-  use Guardian, otp_app: :exapi
+  use Guardian,
+    otp_app: :exapi
 
   alias Exapi.{Error, User}
 
@@ -9,12 +10,10 @@ defmodule ExapiWeb.Auth.Guardian do
     {:error, :reason_for_error}
   end
 
-  def resource_from_claims(%{"sub" => id}) do
-    Exapi.get_user_by_id(id)
-  end
-
-  def resource_from_claims(_claims) do
-    {:error, :reason_for_error}
+  def resource_from_claims(claims) do
+    claims
+    |> Map.get("sub")
+    |> Exapi.get_user_by_id()
   end
 
   def authenticate(%{"id" => user_id, "password" => password}) do
@@ -30,5 +29,9 @@ defmodule ExapiWeb.Auth.Guardian do
 
   def authenticate(_) do
     {:error, Error.build(:bad_request, "Invalid or missing params")}
+  end
+
+  def get_token(conn) do
+    conn.private[:guardian_default_token]
   end
 end

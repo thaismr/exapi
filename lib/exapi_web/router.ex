@@ -16,6 +16,7 @@ defmodule ExapiWeb.Router do
     pipe_through [:api, :auth]
 
     get "/:user", DataController, :show
+    get "/users/:id", UsersController, :show
   end
 
   scope "/", ExapiWeb do
